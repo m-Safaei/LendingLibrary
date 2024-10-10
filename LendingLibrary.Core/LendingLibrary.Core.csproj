@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\RepositoryInterfaces\" />
+    <Folder Include="DTO\Book\" />
+    <Folder Include="DTO\User\" />
+    <Folder Include="ServiceInterfaces\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+</Project>
