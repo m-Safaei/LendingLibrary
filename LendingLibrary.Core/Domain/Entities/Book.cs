@@ -19,7 +19,8 @@ public class Book
 
     public int PublishedYear { get; set; }
 
-    public StatusOptions Status { get; set; }
+    [StringLength(20, MinimumLength = 3)]
+    public string? Status { get; set; }
 
     public DateTime? ReturnDate { get; set; }
 
