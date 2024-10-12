@@ -1,5 +1,6 @@
 ﻿using LendingLibrary.Core.Domain.Entities;
 using LendingLibrary.Core.DTO.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,10 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Register()
     {
+        if (User.Identity.IsAuthenticated)
+        {
+            return RedirectToAction("Index", "Home");
+        }
         return View();
     }
 
@@ -73,6 +78,10 @@ public class AccountController : Controller
     [HttpGet]
     public IActionResult Login()
     {
+        if (User.Identity.IsAuthenticated)
+        {
+            return RedirectToAction("Index","Home");
+        }
         return View();
     }
 
@@ -97,6 +106,14 @@ public class AccountController : Controller
         ModelState.AddModelError("Login", "ایمیل یا پسورد نادرست است");
 
         return View(loginDto);
+    }
+
+    [Authorize]
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+
+        return RedirectToAction("Index", "Home");
     }
 
 }
