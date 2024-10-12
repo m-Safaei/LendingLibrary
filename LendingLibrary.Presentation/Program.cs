@@ -27,6 +27,12 @@ builder.Services.AddIdentity<ApplicationUser, ApplicationRole>(options =>
     .AddUserStore<UserStore<ApplicationUser, ApplicationRole, LendingLibraryDbContext, Guid>>()
     .AddRoleStore<RoleStore<ApplicationRole, LendingLibraryDbContext, Guid>>();
 
+builder.Services.AddAuthorization();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

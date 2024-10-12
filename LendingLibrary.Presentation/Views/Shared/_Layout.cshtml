@@ -13,7 +13,7 @@
             <div class="right-side">
                 <div class="title">
                     <div>
-                        <img class="logo" src="/svg/book.svg"/>
+                        <img class="logo" src="/svg/book.svg" />
                     </div>
                     <div class="header">کتابخانه مرکزی</div>
                 </div>
@@ -23,14 +23,27 @@
                 </div>
             </div>
             <div class="left-side">
-                
-                <div class="link">
-                    <i class="fa-solid fa-user" style="color: #3e2197"></i>
-                    <a asp-controller="" asp-action="">ورود</a>
-                </div>
-                <div class="link" style="padding-left: 20px">
-                    <a asp-controller="" asp-action="">ثبت نام</a>
-                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="link">
+                        <i class="fa-solid fa-user" style="color: #3e2197"></i>
+                        <a asp-controller="" asp-action="">پروفایل</a>
+                    </div>
+                    <div class="link" style="padding-left: 20px">
+                        <a asp-controller="Account" asp-action="Register">خروج</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="link">
+                        <i class="fa-solid fa-user" style="color: #3e2197"></i>
+                        <a asp-controller="" asp-action="">ورود</a>
+                    </div>
+                    <div class="link" style="padding-left: 20px">
+                        <a asp-controller="Account" asp-action="Register">ثبت نام</a>
+                    </div>
+                }
+
             </div>
         </div>
         <div>

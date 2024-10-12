@@ -9,13 +9,13 @@
   <ItemGroup>
     <Folder Include="Domain\RepositoryInterfaces\" />
     <Folder Include="DTO\Book\" />
-    <Folder Include="DTO\User\" />
     <Folder Include="ServiceInterfaces\" />
     <Folder Include="Services\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
   </ItemGroup>
 
 </Project>
