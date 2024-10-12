@@ -51,9 +51,10 @@ public class AccountController : Controller
             return RedirectToAction("Index", "Home");
 
         }
-        foreach (var error in result.Errors) { 
+        foreach (var error in result.Errors)
+        {
 
-            ModelState.AddModelError("Register",error.Description);
+            ModelState.AddModelError("Register", error.Description);
         }
         return View(registerDto);
     }
@@ -68,5 +69,34 @@ public class AccountController : Controller
 
         return Json(false);//invalid
     }
-}
 
+    [HttpGet]
+    public IActionResult Login()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginDto loginDto, string? ReturnUrl)
+    {
+        if (!ModelState.IsValid) return View(loginDto);
+
+        var result = await _signInManager.PasswordSignInAsync(loginDto.Email,
+                           loginDto.Password, isPersistent: false, lockoutOnFailure: false);
+
+        if (result.Succeeded)
+        {
+            if (!string.IsNullOrEmpty(ReturnUrl) && Url.IsLocalUrl(ReturnUrl))
+            {
+                return LocalRedirect(ReturnUrl);
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        ModelState.AddModelError("Login", "ایمیل یا پسورد نادرست است");
+
+        return View(loginDto);
+    }
+
+}

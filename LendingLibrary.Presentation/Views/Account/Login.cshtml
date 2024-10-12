@@ -1,0 +1,49 @@
+﻿@model LoginDto
+
+@{
+    ViewBag.Title = "ورود";
+}
+
+<div class="breadcrumb">
+    <div style="font-weight: bold;font-size: 20px">ورود</div>
+    <div class="text-grey">
+        <span><a asp-controller="Home" asp-action="Index">خانه</a></span>
+        <i class="fa-solid fa-caret-left"></i>
+        <span>ورود</span>
+    </div>
+</div>
+
+<div class="body-container">
+    <div class="form-container">
+        <form asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="@Context.Request.Query["ReturnUrl"]" method="post">
+            <div class="form-field">
+                <div class="field-label">
+                    <label asp-for="Email">ایمیل</label>
+                </div>
+                <div>
+                    <input asp-for="Email" class="form-input" />
+                    <span asp-validation-for="Email" class="text-red"></span>
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="field-label">
+                    <label asp-for="Password">پسورد</label>
+                </div>
+                <div>
+                    <input asp-for="Password" class="form-input" />
+                    <span asp-validation-for="Password" class="text-red"></span>
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="field-label">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-pink">ورود</button>
+                </div>
+            </div>
+            <div class="field-label">
+                حساب کاربری ندارید؟<a asp-controller="Account" asp-action="Register" class="form-field-link">ایجاد حساب کاربری</a>
+            </div>
+        </form>
+    </div>
+</div>
