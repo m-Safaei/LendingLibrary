@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BookResponseDto>
+@{
+    ViewBag.Title = "جستجو";
+}
+
+<div class="breadcrumb">
+    <div style="font-weight: bold;font-size: 20px">جستجو</div>
+    <div class="text-grey">
+        <span><a asp-controller="Home" asp-action="Index">خانه</a></span>
+        <i class="fa-solid fa-caret-left"></i>
+        <span>جستجو در منابع کتابخانه</span>
+    </div>
+</div>
+<form asp-controller="Books" asp-action="Search" method="get">
+    <div class="box-container">
+        <div class="box">
+            <div>جستجو براساس:</div>
+            <div style="width:20%">
+                <select class="form-input" name="searchBy">
+                    @foreach (var field in ViewBag.SearchFields)
+                    {
+                        <option value="@field.Key">@field.Value</option>
+                    }
+                </select>
+            </div>
+            <div style="width:40%">
+                <input type="text" name="searchString" id="Search" class="form-input" placeholder="جستجو" />
+            </div>
+            <div>
+                <button type="submit" class="btn btn-pink">جستجو</button>
+            </div>
+        </div>
+    </div>
+</form>
+

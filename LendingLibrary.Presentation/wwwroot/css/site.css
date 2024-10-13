@@ -172,6 +172,7 @@ a {
     .btn-pink:hover {
         background-color: #fc69b0;
     }
+
 .form-field-link {
     padding: 10px;
     color: #ca2851;
@@ -180,3 +181,21 @@ a {
     .form-field-link:hover {
         color: #fc69b0
     }
+
+
+.box-container{
+    display:flex;
+    justify-content:center
+}
+.box {
+    margin: 10px 20px;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #fc69b0;
+    box-shadow: 0px 0px 3px 2px #ffffff;
+    display: flex;
+    background-color: lavenderblush;
+    width: 80%;
+    justify-content: space-between;
+    align-items: center
+}
