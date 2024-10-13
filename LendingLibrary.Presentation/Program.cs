@@ -1,5 +1,9 @@
 using LendingLibrary.Core.Domain.Entities;
+using LendingLibrary.Core.Domain.RepositoryInterfaces;
+using LendingLibrary.Core.ServiceInterfaces;
+using LendingLibrary.Core.Services;
 using LendingLibrary.Infrastructure.AppDbContext;
+using LendingLibrary.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 
 builder.Services.AddDbContext<LendingLibraryDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LibraryConnection")));
@@ -32,6 +37,9 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/Account/Login";
 });
+
+builder.Services.AddScoped<IBooksRepository, BooksRepository>();
+builder.Services.AddScoped<IBooksService, BooksService>();
 
 var app = builder.Build();
 

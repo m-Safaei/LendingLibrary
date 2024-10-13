@@ -183,10 +183,11 @@ a {
     }
 
 
-.box-container{
-    display:flex;
-    justify-content:center
+.box-container {
+    display: flex;
+    justify-content: center
 }
+
 .box {
     margin: 10px 20px;
     padding: 15px;
@@ -199,3 +200,42 @@ a {
     justify-content: space-between;
     align-items: center
 }
+
+.table-container {
+    width:80%;
+    padding: 15px;
+    background-color: lavenderblush;
+    border-radius: 8px;
+    margin-top: 5px;
+    display: flex;
+}
+
+.table {
+    border-collapse:collapse;
+    width:100%
+}
+
+    .table thead {
+        font-weight: bold;
+        text-align: right;
+    }
+
+        .table thead th {
+            padding: 5px 10px;
+            text-align: right;
+            border-bottom: 3px solid #efefef;
+        }
+
+    .table tbody td {
+        padding: 6px 10px;
+        text-align: right;
+    }
+
+    .table tbody tr {
+        transition: background-color 0.4s, color 0.3s;
+        border-bottom: 1px solid #fc69b0;
+    }
+
+        .table tbody tr:hover {
+            background-color: #f0b5bb;
+        }

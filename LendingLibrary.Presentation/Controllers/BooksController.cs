@@ -1,4 +1,5 @@
 ﻿using LendingLibrary.Core.DTO.Book;
+using LendingLibrary.Core.ServiceInterfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LendingLibrary.Presentation.Controllers;
@@ -6,6 +7,15 @@ namespace LendingLibrary.Presentation.Controllers;
 [Route("[controller]/[action]")]
 public class BooksController : Controller
 {
+    #region ctor
+
+    private readonly IBooksService _booksService;
+    public BooksController(IBooksService booksService)
+    {
+        _booksService = booksService;
+    }
+    #endregion
+
     [HttpGet]
     public async Task<IActionResult> Search(string searchBy,string? searchString)
     {
@@ -20,6 +30,11 @@ public class BooksController : Controller
             return View();
         }
 
-        return View();
+        List<BookResponseDto> books = await _booksService.GetFilteredBooks(searchBy, searchString);
+
+        ViewBag.SearchBy = searchBy;
+        ViewBag.SearchString = searchString;
+
+        return View(books);
     }
 }
