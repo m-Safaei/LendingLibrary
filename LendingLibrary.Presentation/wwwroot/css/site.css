@@ -182,6 +182,10 @@ a {
         color: #fc69b0
     }
 
+.request{
+    padding:20px;
+    text-align:center
+}
 .actions{
     display:flex;
     justify-content:left;
