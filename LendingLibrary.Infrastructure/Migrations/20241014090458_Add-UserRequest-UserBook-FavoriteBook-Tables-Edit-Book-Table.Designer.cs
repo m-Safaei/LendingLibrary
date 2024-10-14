@@ -4,6 +4,7 @@ using LendingLibrary.Infrastructure.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LendingLibrary.Infrastructure.Migrations
 {
     [DbContext(typeof(LendingLibraryDbContext))]
-    partial class LendingLibraryDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241014090458_Add-UserRequest-UserBook-FavoriteBook-Tables-Edit-Book-Table")]
+    partial class AddUserRequestUserBookFavoriteBookTablesEditBookTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,7 +194,7 @@ namespace LendingLibrary.Infrastructure.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("UserBooks");
+                    b.ToTable("BooksBooks");
                 });
 
             modelBuilder.Entity("LendingLibrary.Core.Domain.Entities.UserRequest", b =>

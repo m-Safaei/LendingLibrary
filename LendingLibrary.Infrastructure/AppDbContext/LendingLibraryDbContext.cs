@@ -12,5 +12,11 @@ public class LendingLibraryDbContext : IdentityDbContext<ApplicationUser, Applic
     }
 
     public DbSet<Book> Books { get; set; }
+    
+    public DbSet<UserRequest> UserRequests { get; set; }
+
+    public DbSet<UserBook> UserBooks { get; set; }
+
+    public DbSet<FavoriteBook> FavoriteBooks { get; set; }
 }
 
