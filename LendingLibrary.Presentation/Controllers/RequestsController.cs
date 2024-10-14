@@ -41,4 +41,18 @@ public class RequestsController : Controller
 
         return View(requests);
     }
+
+    public async Task<IActionResult> DeleteRequest(Guid id)
+    {
+        bool res = await _userRequestsService.DeleteRequest(id);
+        if (res)
+        {
+            TempData["SuccessMessage"] = "عملیات باموفقیت انجام شد";
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "عملیات ناموفق";
+        }
+        return RedirectToAction("ListOfRequests", "Requests");
+    }
 }
