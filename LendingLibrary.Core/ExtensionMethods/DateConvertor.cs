@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace LendingLibrary.Core.Utilities;
+namespace LendingLibrary.Core.ExtensionMethods;
 
 public static class DateConvertor
 {
