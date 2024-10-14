@@ -182,8 +182,26 @@ a {
         color: #fc69b0
     }
 
-
+.actions{
+    display:flex;
+    justify-content:left;
+}
+.book-detail {
+    width: 40%;
+    display: flex;
+    padding: 20px
+}
+.book-container {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 30px;
+    background-color: lavenderblush;
+    border-radius: 10px;
+    margin-top: 5px;
+}
 .box-container {
+    margin-top:10px;
     display: flex;
     justify-content: center
 }

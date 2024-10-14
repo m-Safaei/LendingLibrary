@@ -1,0 +1,67 @@
+﻿@model BookResponseDto
+
+@{
+    ViewBag.Title = "جزئیات کتاب";
+}
+
+<div class="breadcrumb">
+    <div style="font-weight: bold;font-size: 20px">مشخصات کتاب</div>
+    <div class="text-grey">
+        <span><a asp-controller="Home" asp-action="Index">خانه</a></span>
+        <i class="fa-solid fa-caret-left"></i>
+        <span>جستجو</span>
+        <i class="fa-solid fa-caret-left"></i>
+        <span>نمایش کامل</span>
+    </div>
+</div>
+
+<div class="box-container">
+    <div class="book-container">
+        <div style="text-align:center">مشخصات کتاب</div>
+        <div class="book-detail">
+            <div style="text-align:right">عنوان : </div>
+            <div style="padding-right:10px">@Model.Title</div>
+        </div>
+        <div class="book-detail">
+            <div style="text-align:right">نام پدیدآور : </div>
+            <div style="padding-right:10px">@Model.Author</div>
+        </div>
+        <div class="book-detail">
+            <div style="text-align:right">تاریخ نشر : </div>
+            <div style="padding-right:10px">@Model.PublishedYear</div>
+        </div>
+        <div class="book-detail">
+            <div style="text-align:right">زبان اثر : </div>
+            <div style="padding-right:10px">@Model.Language</div>
+        </div>
+        <div class="book-detail">
+            <div style="text-align:right">وضعیت : </div>
+            <div style="padding-right:10px">@Model.Status</div>
+        </div>
+        @if (Model.Status != null && Model.Status.Equals("در امانت"))
+        {
+            <div class="book-detail">
+                <div style="text-align:right">تاریخ برگشت : </div>
+                <div style="padding-right:10px">@Model.ReturnDate.ToShamsi()</div>
+            </div>
+        }
+    <div class="actions">
+        @if (Model.Status != null && Model.Status.Equals("در امانت"))
+        {
+            <a style="margin: 10px; width: 160px" class="btn btn-pink" asp-controller="" asp-action="">درخواست رزرو</a>
+            <a style="margin: 10px; width: 200px" class="btn btn-pink" asp-controller="" asp-action="">افزودن به علاقه‌مندی‌ها</a>
+        }
+        else if (Model.Status != null && Model.Status.Equals("رزرو شده"))
+        {
+            <a style="margin: 10px; width: 200px" class="btn btn-pink" asp-controller="" asp-action="">افزودن به علاقه‌مندی‌ها</a>
+        }
+        else
+        {
+            <a style="margin:10px;width:160px" class="btn btn-pink" asp-controller="" asp-action="">درخواست امانت</a>
+            <a style="margin: 10px; width: 160px" class="btn btn-pink" asp-controller="" asp-action="">درخواست رزرو</a>
+            <a style="margin: 10px; width: 200px" class="btn btn-pink" asp-controller="" asp-action="">افزودن به علاقه‌مندی‌ها</a>
+        }
+
+    </div>
+    </div>
+</div>

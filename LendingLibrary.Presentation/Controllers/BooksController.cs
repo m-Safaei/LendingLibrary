@@ -37,4 +37,16 @@ public class BooksController : Controller
 
         return View(books);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> BookPage(Guid id)
+    {
+        BookResponseDto? book = await _booksService.GetBookById(id);
+        if(book == null)
+        {
+            return RedirectToAction("Search", "Books");
+        }
+
+        return View(book);
+    }
 }

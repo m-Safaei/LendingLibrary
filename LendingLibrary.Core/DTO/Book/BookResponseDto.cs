@@ -16,5 +16,5 @@ public class BookResponseDto
 
     public string? Status { get; set; }
 
-    public DateTime? ReturnDate { get; set; }
+    public DateTime ReturnDate { get; set; }
 }
