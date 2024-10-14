@@ -26,6 +26,7 @@
                 <th>زبان</th>
                 <th>تاریخ نشر</th>
                 <th>وضعیت</th>
+                <th>حذف علاقه‌مندی</th>
                 </thead>
                 <tbody>
                     @foreach (FavoriteBookDto book in Model)
@@ -36,7 +37,7 @@
                             <td style="width:15%">@book.Language</td>
                             <td style="width:15%">@book.PublishedYear</td>
                             <td style="width:20%">@book.Status</td>
-                            <td style="width:20%"><a asp-controller="Requests" asp-action="">حذف</a></td>
+                            <td style="width:20%"><a asp-controller="FavoriteBooks" asp-action="DeleteFavoriteBook" asp-route-favoriteId="@book.FavoriteId">حذف</a></td>
                         </tr>
                     }
                 </tbody>
@@ -71,5 +72,5 @@ else if (Model == null)
 }
 else if (Model != null && !Model.Any())
 {
-    <div class="text-red" style="padding-right:200px">درخواستی یافت نشد</div>
+    <div class="text-red" style="padding-right:200px">لیست علاقه‌مندی‌ها خالی است</div>
 }

@@ -49,17 +49,17 @@
         @if (Model.Status != null && Model.Status.Equals("در امانت"))
         {
             <a style="margin: 10px; width: 160px" class="btn btn-pink"  asp-controller="Requests" asp-action="SendRequest" asp-route-bookId="@Model.Id" asp-route-request="رزرو">درخواست رزرو</a>
-            <a style="margin: 10px; width: 200px" class="btn btn-pink" asp-controller="" asp-action="">افزودن به علاقه‌مندی‌ها</a>
+            <a style="margin: 10px; width: 200px" class="btn btn-pink" asp-controller="FavoriteBooks" asp-action="AddBookToFavorites" asp-route-bookId="@Model.Id">افزودن به علاقه‌مندی‌ها</a>
         }
         else if (Model.Status != null && Model.Status.Equals("رزرو شده"))
         {
-            <a style="margin: 10px; width: 200px" class="btn btn-pink" asp-controller="" asp-action="">افزودن به علاقه‌مندی‌ها</a>
+            <a style="margin: 10px; width: 200px" class="btn btn-pink" asp-controller="FavoriteBooks" asp-action="AddBookToFavorites" asp-route-bookId="@Model.Id">افزودن به علاقه‌مندی‌ها</a>
         }
         else
         {
             <a style="margin:10px;width:160px" class="btn btn-pink" asp-controller="Requests" asp-action="SendRequest" asp-route-bookId="@Model.Id" asp-route-request="امانت">درخواست امانت</a>
             <a style="margin: 10px; width: 160px" class="btn btn-pink" asp-controller="Requests" asp-action="SendRequest" asp-route-bookId="@Model.Id" asp-route-request="رزرو">درخواست رزرو</a>
-            <a style="margin: 10px; width: 200px" class="btn btn-pink" asp-controller="" asp-action="">افزودن به علاقه‌مندی‌ها</a>
+            <a style="margin: 10px; width: 200px" class="btn btn-pink" asp-controller="FavoriteBooks" asp-action="AddBookToFavorites" asp-route-bookId="@Model.Id">افزودن به علاقه‌مندی‌ها</a>
         }
 
     </div>
