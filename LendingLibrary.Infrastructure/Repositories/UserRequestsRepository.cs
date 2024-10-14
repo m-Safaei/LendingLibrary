@@ -20,6 +20,10 @@ public class UserRequestsRepository : IUserRequestsRepository
         await _context.SaveChangesAsync();
     }
 
+    public async Task<bool> RequestExists(Guid userId,Guid bookId)
+    {
+        return await _context.UserRequests.AnyAsync(r=>r.ApplicationUserId == userId && r.BookId == bookId);
+    }
 
     public async Task<List<UserRequest>> GetAllUserRequests(Guid userId)
     {

@@ -4,7 +4,7 @@ namespace LendingLibrary.Core.ExtensionMethods;
 
 public static class UserExtensions
 {
-    public static Guid? GetUserId(this ClaimsPrincipal claimsPrincipal)
+    public static Guid GetUserId(this ClaimsPrincipal claimsPrincipal)
     {
         if(claimsPrincipal != null)
         {

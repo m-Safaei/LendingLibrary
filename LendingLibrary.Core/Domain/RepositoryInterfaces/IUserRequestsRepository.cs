@@ -4,6 +4,7 @@ namespace LendingLibrary.Core.Domain.RepositoryInterfaces;
 
 public interface IUserRequestsRepository
 {
+    Task<bool> RequestExists(Guid userId, Guid bookId);
     Task AddRequest(UserRequest userRequest);
 
     Task<UserRequest?> GetUserRequestById(Guid requestId);
