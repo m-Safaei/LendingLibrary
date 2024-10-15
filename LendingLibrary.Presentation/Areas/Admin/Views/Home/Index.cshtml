@@ -1,1 +1,25 @@
-﻿<h1>Admin page</h1>
+﻿<div class="box-container">
+    <div class="book-container" style="width:50%">
+        <div class="request">
+            <a asp-controller="Requests" asp-action="ListOfRequests">لیست درخواست‌ها</a>
+        </div>
+        <div class="request">
+            <a asp-controller="Requests" asp-action="ListOfRequests">لیست کتاب ها</a>
+        </div>
+        <div class="request">
+            <a asp-controller="Requests" asp-action="ListOfRequests">افزودن کتاب جدید</a>
+        </div>
+        <div class="request">
+            <a asp-area="Admin" asp-controller="Roles" asp-action="ListOfRoles">لیست نقش ها</a>
+        </div>
+        <div class="request">
+            <a asp-area="Admin" asp-controller="Roles" asp-action="CreateRole">افزودن نقش جدید</a>
+        </div>
+        <div class="request">
+            <a asp-controller="" asp-action="">لیست کاربران</a>
+        </div>
+        <div class="request">
+            <a asp-controller="" asp-action="">درج کاربر</a>
+        </div>
+    </div>
+</div>

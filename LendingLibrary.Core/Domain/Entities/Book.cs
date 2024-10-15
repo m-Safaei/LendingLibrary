@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using LendingLibrary.Core.Enums;
 
 namespace LendingLibrary.Core.Domain.Entities;
 

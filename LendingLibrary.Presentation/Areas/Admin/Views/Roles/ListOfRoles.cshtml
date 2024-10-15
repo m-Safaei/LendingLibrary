@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ApplicationRole>
+
+@{
+    ViewBag.Title = "لیست نقش ها";
+}
+
+<div class="breadcrumb">
+    <div style="font-weight: bold;font-size: 20px">لیست نقش ها</div>
+    <div class="text-grey">
+        <span><a asp-area="Admin" asp-controller="Home" asp-action="Index">خانه</a></span>
+        <i class="fa-solid fa-caret-left"></i>
+        <span>نقش ها</span>
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="box-container">
+        <div class="table-container" style="width:95%">
+            <table class="table">
+                <thead>
+                <th>عنوان نقش</th>
+                <th>حذف نقش</th>
+                </thead>
+                <tbody>
+                    @foreach (ApplicationRole role in Model)
+                    {
+                        <tr>
+                            <td style="width:40%">@role.Name</td>
+                            <td style="width:30%"><a asp-controller="Requests" asp-action="DeleteRequest" asp-route-id="@role.Id">حذف</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else if (Model == null)
+{
+    <div class="box-container">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <th>عنوان نقش</th>
+                <th>حذف نقش</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="width:40%"></td>
+                        <td style="width:20%"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+}
+else if (Model != null && !Model.Any())
+{
+    <div class="text-red" style="padding-right:200px">نقشی یافت نشد</div>
+}

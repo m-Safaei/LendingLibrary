@@ -1,0 +1,41 @@
+﻿@model RoleDto
+
+@{
+    ViewBag.Title = "افزودن نقش";
+}
+
+<div class="breadcrumb">
+    <div style="font-weight: bold;font-size: 20px">افزودن نقش</div>
+    <div class="text-grey">
+        <span><a asp-area="Admin" asp-controller="Home" asp-action="Index">خانه</a></span>
+        <i class="fa-solid fa-caret-left"></i>
+        <span>افزودن نقش جدید</span>
+    </div>
+</div>
+
+<div class="body-container">
+    <div class="form-container">
+        <form asp-area="Admin" asp-controller="Roles" asp-action="CreateRole" method="post">
+            <div class="form-field">
+                <div class="field-label">
+                    <label asp-for="Name">عنوان نقش: </label>
+                </div>
+                <div>
+                    <input asp-for="Name" class="form-input" />
+                    <span asp-validation-for="Name" class="text-red"></span>
+                </div>
+            </div>
+            
+            <div class="form-field">
+                <div class="field-label">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-pink" style="margin-left:10px">ذخیره</button>
+                    <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-red">لغو</a>
+
+                    <div asp-validation-summary="All" class="text-red" style="padding:6px"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

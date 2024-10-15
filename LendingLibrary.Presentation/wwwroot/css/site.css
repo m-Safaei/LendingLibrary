@@ -173,6 +173,17 @@ a {
         background-color: #fc69b0;
     }
 
+.btn-red {
+    background-color: red;
+    color: #ffffff;
+    border: 2px solid #f0436e;
+    cursor: pointer
+}
+
+    .btn-red:hover {
+        background-color: #fc6355;
+    }
+
 .form-field-link {
     padding: 10px;
     color: #ca2851;

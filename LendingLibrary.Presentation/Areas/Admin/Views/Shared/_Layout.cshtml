@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="right-side">
+                <div class="title">
+                    <div>
+                        <img class="logo" src="/svg/book.svg" />
+                    </div>
+                    <div class="header">پنل ادمین</div>
+                </div>
+                <div class="header">@User.Identity?.Name</div>
+
+            </div>
+            <div class="link">
+                <i class="fa-solid fa-magnifying-glass" style="color: #3e2197"></i>
+                <a asp-controller="Books" asp-action="Search">جستجو در منابع کتابخانه</a>
+            </div>
+            <div class="left-side">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="link">
+                        <i class="fa-solid fa-user" style="color: #3e2197"></i>
+                        <a asp-controller="User" asp-action="UserProfile">پروفایل</a>
+                    </div>
+                    <div class="link" style="padding-left: 20px">
+                        <a asp-controller="Account" asp-action="Logout">خروج</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="link">
+                        <i class="fa-solid fa-user" style="color: #3e2197"></i>
+                        <a asp-controller="Account" asp-action="Login">ورود</a>
+                    </div>
+                    <div class="link" style="padding-left: 20px">
+                        <a asp-controller="Account" asp-action="Register">ثبت نام</a>
+                    </div>
+                }
+
+            </div>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+</body>
+</html>
