@@ -15,6 +15,10 @@ public class BooksService : IBooksService
         _booksRepository = booksRepository;
     }
 
+    public async Task ChangeBookStatus(string status, Guid bookId)
+    {
+        await _booksRepository.ChangeBookStatus(status, bookId);
+    }
     public async Task<List<BookResponseDto>> GetAllBooks()
     {
         List<Book> books = await _booksRepository.GetAllBooks();

@@ -14,4 +14,8 @@ public interface IUserRequestsService
     Task<bool> DeleteRequest(Guid requestId);
 
     Task<List<UserRequestResponseDto>> GetBooks(Guid userId);
+
+    Task<List<UsersRequestsAdminSideDto>> GetAllRequests();
+
+    Task<bool> ConfirmRequest(string request, Guid bookId, Guid userId);
 }

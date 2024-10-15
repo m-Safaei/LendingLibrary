@@ -21,7 +21,7 @@ public class Book
     [StringLength(20, MinimumLength = 3)]
     public string? Status { get; set; }
 
-    public DateTime ReturnDate { get; set; }
+    public DateTime ReturnDate { get; set; } = DateTime.Now;
 
 
 }

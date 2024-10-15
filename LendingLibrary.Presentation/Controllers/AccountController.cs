@@ -12,12 +12,15 @@ public class AccountController : Controller
     #region ctor
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly SignInManager<ApplicationUser> _signInManager;
+    private readonly RoleManager<ApplicationRole> _roleManager;
 
     public AccountController(UserManager<ApplicationUser> userManager,
-                            SignInManager<ApplicationUser> signInManager)
+                            SignInManager<ApplicationUser> signInManager,
+                            RoleManager<ApplicationRole> roleManager)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _roleManager = roleManager;
     }
     #endregion
 
@@ -50,6 +53,10 @@ public class AccountController : Controller
         IdentityResult result = await _userManager.CreateAsync(user, registerDto.Password);
         if (result.Succeeded)
         {
+            if(await _roleManager.FindByNameAsync("User") != null)
+            {
+                await _userManager.AddToRoleAsync(user, "User");
+            }
             //Sign in:
             await _signInManager.SignInAsync(user, isPersistent: false);
 

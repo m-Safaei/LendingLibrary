@@ -10,11 +10,17 @@ public class UserRequestsService : IUserRequestsService
 {
     private readonly IUserRequestsRepository _userRequestsRepository;
     private readonly IBooksService _booksService;
-    public UserRequestsService(IUserRequestsRepository userRequestsRepository, IBooksService booksService)
+    private readonly IUserBookRepository _userBookRepository;
+
+    public UserRequestsService(IUserRequestsRepository userRequestsRepository, 
+                     IBooksService booksService
+                    ,IUserBookRepository userBookRepository)
     {
         _userRequestsRepository = userRequestsRepository;
         _booksService = booksService;
+        _userBookRepository = userBookRepository;
     }
+
 
     public async Task<bool> AddRequest(Guid userId, Guid bookId, string request)
     {
@@ -82,6 +88,7 @@ public class UserRequestsService : IUserRequestsService
                         Language = book.Language,
                         PublishedYear = book.PublishedYear,
                         Status = book.Status,
+                        RequestDate = request.RequestDate
                     });
                 }
             }
@@ -103,5 +110,49 @@ public class UserRequestsService : IUserRequestsService
             Id = request.Id
         };
         return userRequestDto;
+    }
+
+    public async Task<List<UsersRequestsAdminSideDto>> GetAllRequests()
+    {
+        List<UserRequest> userRequests = await _userRequestsRepository.GetAllRequests();
+
+        List<Guid> userIds = userRequests.Select(r=>r.ApplicationUserId).ToList();
+
+        List<UsersRequestsAdminSideDto> userRequestsAdminSideDto = new();
+
+        foreach (Guid userId in userIds) 
+        { 
+            string userName = _userRequestsRepository.GetUserNameById(userId);
+            List<UserRequestResponseDto> requests = await GetBooks(userId);
+
+            userRequestsAdminSideDto.Add(new UsersRequestsAdminSideDto()
+            {
+                UserId = userId,
+                UserName = userName,
+                requests = requests
+            });
+        }
+        return userRequestsAdminSideDto;
+    }
+    public async Task<bool> ConfirmRequest(string request, Guid bookId, Guid userId)
+    {
+        if (await _userBookRepository.UserBookExists(userId, bookId)) return false;
+
+        if(request == "امانت")
+        {
+            await _booksService.ChangeBookStatus("در امانت", bookId);
+        }
+        else if(request == "رزرو")
+        {
+            await _booksService.ChangeBookStatus("رزرو شده", bookId);
+        }
+
+        UserBook userBook = new()
+        {
+            BookId = bookId,
+            ApplicationUserId = userId,
+        };
+        await _userBookRepository.AddUserBook(userBook);
+        return true;
     }
 }

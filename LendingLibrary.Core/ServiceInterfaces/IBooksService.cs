@@ -10,4 +10,6 @@ public interface IBooksService
     Task<List<BookResponseDto>> GetAllBooks();
 
     Task<List<BookResponseDto>> GetFilteredBooks(string searchBy, string searchString);
+
+    Task ChangeBookStatus(string status, Guid bookId);
 }

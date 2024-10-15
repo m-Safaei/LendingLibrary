@@ -44,6 +44,7 @@ builder.Services.AddScoped<IUserRequestsRepository, UserRequestsRepository>();
 builder.Services.AddScoped<IUserRequestsService, UserRequestsService>();
 builder.Services.AddScoped<IFavoriteBooksRepository, FavoriteBooksRepository>();
 builder.Services.AddScoped<IFavoriteBooksService, FavoriteBooksService>();
+builder.Services.AddScoped<IUserBookRepository, UserBookRepository>();
 
 var app = builder.Build();
 

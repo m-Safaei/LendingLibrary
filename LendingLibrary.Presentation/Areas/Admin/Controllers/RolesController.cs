@@ -1,5 +1,6 @@
 ﻿using LendingLibrary.Core.Domain.Entities;
 using LendingLibrary.Core.DTO.Role;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace LendingLibrary.Presentation.Areas.Admin.Controllers;
 
 [Area("Admin")]
-//[Authorize(Roles ="Admin")]
+[Authorize(Roles ="Admin")]
 public class RolesController : Controller
 {
     private readonly RoleManager<ApplicationRole> _roleManager;

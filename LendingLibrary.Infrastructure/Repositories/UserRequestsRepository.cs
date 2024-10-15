@@ -45,4 +45,14 @@ public class UserRequestsRepository : IUserRequestsRepository
         await _context.SaveChangesAsync();
         return true;
     }
+
+    public async Task<List<UserRequest>> GetAllRequests()
+    {
+        return await _context.UserRequests.ToListAsync();
+    }
+
+    public string GetUserNameById(Guid userId)
+    {
+        return _context.Users.SingleOrDefault(u => u.Id == userId).UserName;
+    }
 }

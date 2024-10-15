@@ -11,7 +11,7 @@ public class UserRequest
     [StringLength(50, MinimumLength = 3)]
     public string Request {  get; set; }
 
-    public DateTime RequestDate { get; set; }
+    public DateTime RequestDate { get; set; } = DateTime.Now;
 
     public Guid ApplicationUserId { get; set; }
 

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<UsersRequestsAdminSideDto>
+
+@{
+    ViewBag.Title = "لیست درخواست ها";
+}
+
+<div class="breadcrumb">
+    <div style="font-weight: bold;font-size: 20px">لیست درخواست ها</div>
+    <div class="text-grey">
+        <span><a asp-area="Admin" asp-controller="Home" asp-action="Index">خانه</a></span>
+        <i class="fa-solid fa-caret-left"></i>
+        <span>درخواست ها</span>
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="box-container">
+        <div class="table-container" style="width:95%">
+            <table class="table">
+                <thead>
+                <th>کاربر</th>
+                <th>عنوان کتاب</th>
+                <th>نویسنده</th>
+                <th>وضعیت</th>
+                <th>درخواست برای</th>
+                <th>تاریخ ارسال درخواست</th>
+                <th>تایید یا حذف درخواست</th>
+                </thead>
+                <tbody>
+                    @foreach (UsersRequestsAdminSideDto userRequest in Model)
+                    {
+                        foreach (UserRequestResponseDto request in userRequest.requests)
+                        {
+                            <tr>
+                                <td>@userRequest.UserName</td>
+                                <td style="width:40%"><a asp-area="" asp-controller="Books" asp-action="BookPage" asp-route-id="@request.BookId">@request.Title</a></td>
+                                <td style="width:20%">@request.Author</td>
+                                <td style="width:20%">@request.Status</td>
+                                <td style="width:25%">@request.Request</td>
+                                <td>@request.RequestDate.ToShamsi()</td>
+                                <td style="width:35%">
+                                    <a asp-area="Admin" asp-controller="Requests" asp-action="ConfirmRequest" asp-route-request="@request.Request" asp-route-bookId="@request.BookId" asp-route-userId="@userRequest.UserId">تایید</a>
+                                    <a asp-area="Admin" asp-controller="Requests" asp-action="DeleteRequest" asp-route-requestId="@request.RequestId">حذف</a>
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else if (Model == null)
+{
+    <div class="box-container">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <th>عنوان</th>
+                <th>نویسنده</th>
+                <th>زبان</th>
+                <th>تاریخ نشر</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="width:40%"></td>
+                        <td style="width:20%"></td>
+                        <td style="width:15%"></td>
+                        <td style="width:20%"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+}
+else if (Model != null && !Model.Any())
+{
+    <div class="text-red" style="padding-right:200px">درخواستی یافت نشد</div>
+}

@@ -29,4 +29,14 @@ public class BooksRepository : IBooksRepository
     {
         return await _context.Books.Where(predicate).ToListAsync();
     }
+
+    public async Task<bool> ChangeBookStatus(string status,Guid bookId)
+    {
+        Book? book = await GetBookById(bookId);
+        if (book == null) return false;
+        book.Status = status;
+        book.ReturnDate = DateTime.Now.AddDays(10);
+        await _context.SaveChangesAsync();
+        return true;
+    }
 }

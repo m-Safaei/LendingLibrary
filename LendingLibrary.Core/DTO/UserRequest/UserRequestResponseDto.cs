@@ -16,4 +16,6 @@ public class UserRequestResponseDto
     public string? Status { get; set; }
 
     public string Request {  get; set; }
+
+    public DateTime RequestDate { get; set; }
 }

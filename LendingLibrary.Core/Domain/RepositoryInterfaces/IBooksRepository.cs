@@ -10,4 +10,6 @@ public interface IBooksRepository
     Task<List<Book>> GetFilteredBooks(Expression<Func<Book,bool>> predicate);
 
     Task<Book?> GetBookById(Guid id);
+
+    Task<bool> ChangeBookStatus(string status, Guid bookId);
 }
