@@ -14,4 +14,8 @@ public interface IBooksRepository
     Task<bool> ChangeBookStatus(string status, Guid bookId);
 
     Task<Book?> GetBookByIdByStatus(Guid bookId, string status);
+
+    Task<bool> BookExistsByTitle(string Title);
+
+    Task AddBook(Book book);
 }

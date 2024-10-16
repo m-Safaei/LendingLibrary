@@ -1,12 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LendingLibrary.Core.Domain.Entities;
+namespace LendingLibrary.Core.DTO.Book;
 
-public class Book
+public class CreateBookDto
 {
-    [Key]
-    public Guid Id { get; set; }
-
     [StringLength(100, MinimumLength = 3)]
     public string Title { get; set; }
 
@@ -18,11 +15,4 @@ public class Book
 
     public int PublishedYear { get; set; }
 
-    [StringLength(20, MinimumLength = 3)]
-    public string? Status { get; set; } = "موجود";
-
-    public DateTime ReturnDate { get; set; } = DateTime.Now;
-
-
 }
-

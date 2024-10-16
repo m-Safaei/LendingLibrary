@@ -43,4 +43,15 @@ public class BooksRepository : IBooksRepository
         await _context.SaveChangesAsync();
         return true;
     }
+
+    public async Task<bool> BookExistsByTitle(string Title)
+    {
+        return await _context.Books.AnyAsync(b => b.Title == Title);
+    }
+
+    public async Task AddBook(Book book)
+    {
+        await _context.Books.AddAsync(book);
+        await _context.SaveChangesAsync();
+    }
 }

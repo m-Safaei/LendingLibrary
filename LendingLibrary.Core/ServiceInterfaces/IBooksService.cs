@@ -14,4 +14,6 @@ public interface IBooksService
     Task ChangeBookStatus(string status, Guid bookId);
 
     Task<BookResponseDto?> GetBookByIdByStatus(Guid bookId, string status);
+
+    Task<bool> CreateBook(CreateBookDto bookDto);
 }

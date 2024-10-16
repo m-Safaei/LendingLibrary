@@ -1,0 +1,65 @@
+﻿@model CreateBookDto
+@{
+    ViewBag.Title = "افزودن کتاب";
+}
+
+<div class="breadcrumb">
+    <div style="font-weight: bold;font-size: 20px">افزودن کتاب</div>
+    <div class="text-grey">
+        <span><a asp-area="Admin" asp-controller="Home" asp-action="Index">خانه</a></span>
+        <i class="fa-solid fa-caret-left"></i>
+        <span>افزودن کتاب</span>
+    </div>
+</div>
+<div class="body-container">
+    <div class="form-container">
+        <form asp-area="Admin" asp-controller="Books" asp-action="CreateBook" method="post">
+            <div class="form-field">
+                <div class="field-label">
+                    <label asp-for="Title">عنوان</label>
+                </div>
+                <div>
+                    <input asp-for="Title" class="form-input" />
+                    <span asp-validation-for="Title" class="text-red"></span>
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="field-label">
+                    <label asp-for="Author">نویسنده</label>
+                </div>
+                <div>
+                    <input asp-for="Author" class="form-input" />
+                    <span asp-validation-for="Author" class="text-red"></span>
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="field-label">
+                    <label asp-for="Language">زبان</label>
+                </div>
+                <div>
+                    <input asp-for="Language" class="form-input" />
+                    <span asp-validation-for="Language" class="text-red"></span>
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="field-label">
+                    <label asp-for="PublishedYear">تاریخ نشر</label>
+                </div>
+                <div>
+                    <input asp-for="PublishedYear" class="form-input" />
+                    <span asp-validation-for="PublishedYear" class="text-red"></span>
+                </div>
+            </div>
+            <div class="form-field">
+                <div class="field-label">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-pink">افزودن کتاب</button>
+                </div>
+            </div>
+            <div class="field-label">
+               <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="btn btn-pink">لغو</a>
+            </div>
+        </form>
+    </div>
+</div>

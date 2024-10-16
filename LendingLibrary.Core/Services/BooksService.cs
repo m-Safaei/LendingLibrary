@@ -61,4 +61,19 @@ public class BooksService : IBooksService
 
         return books.Select(b => b.ToBookResponseDto()).ToList();
     }
+
+    public async Task<bool> CreateBook(CreateBookDto bookDto)
+    {
+        if(await _booksRepository.BookExistsByTitle(bookDto.Title)) return false;
+
+        Book book = new()
+        {
+            Title = bookDto.Title,
+            Author = bookDto.Author,
+            Language = bookDto.Language,
+            PublishedYear = bookDto.PublishedYear,
+        };
+        await _booksRepository.AddBook(book);
+        return true;
+    }
 }

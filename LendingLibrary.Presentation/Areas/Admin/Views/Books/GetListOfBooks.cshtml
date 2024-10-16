@@ -1,0 +1,70 @@
+﻿@model List<BookResponseDto>
+
+@{
+    ViewBag.Title = "لیست کتاب ها";
+}
+
+<div class="breadcrumb">
+    <div style="font-weight: bold;font-size: 20px">لیست کتاب ها</div>
+    <div class="text-grey">
+        <span><a asp-area="Admin" asp-controller="Home" asp-action="Index">خانه</a></span>
+        <i class="fa-solid fa-caret-left"></i>
+        <span>لیست کتاب ها</span>
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <div class="box-container">
+        <div class="table-container" style="width:95%">
+            <table class="table">
+                <thead>
+                <th>عنوان</th>
+                <th>نویسنده</th>
+                <th>زبان</th>
+                <th>تاریخ نشر</th>
+                </thead>
+                <tbody>
+                    @foreach (BookResponseDto book in Model)
+                    {
+                        <tr>
+                            <td style="width:40%"><a asp-area="" asp-controller="Books" asp-action="BookPage" asp-route-id="@book.Id">@book.Title</a></td>
+                            <td style="width:20%">@book.Author</td>
+                            <td style="width:15%">@book.Language</td>
+                            <td style="width:20%">@book.PublishedYear</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else if (Model == null)
+{
+    <div class="box-container">
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                <th>عنوان</th>
+                <th>نویسنده</th>
+                <th>زبان</th>
+                <th>تاریخ نشر</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="width:40%"></td>
+                        <td style="width:20%"></td>
+                        <td style="width:15%"></td>
+                        <td style="width:20%"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+}
+else if (Model != null && !Model.Any())
+{
+    <div class="text-red" style="padding-right:200px">کتابی یافت نشد</div>
+}
