@@ -24,7 +24,7 @@ public class FavoriteBooksController : Controller
         bool res = await _favoriteBooksService.AddToFavorite(userId, bookId);
         if (!res)
         {
-            TempData["RequestError"] = "کتاب مورد‌نظر در لیست علاقه‌مندی‌ها موجود است";
+            TempData["ErrorForAddBookToFavorites"] = "کتاب مورد‌نظر در لیست علاقه‌مندی‌ها موجود است";
             return RedirectToAction("ListOfFavorites", "FavoriteBooks");
         }
         return RedirectToAction("ListOfFavorites", "FavoriteBooks");
