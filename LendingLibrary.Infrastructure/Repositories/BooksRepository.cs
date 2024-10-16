@@ -1,5 +1,6 @@
 ﻿using LendingLibrary.Core.Domain.Entities;
 using LendingLibrary.Core.Domain.RepositoryInterfaces;
+using LendingLibrary.Core.DTO.Book;
 using LendingLibrary.Infrastructure.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -24,7 +25,10 @@ public class BooksRepository : IBooksRepository
     {
         return await _context.Books.FirstOrDefaultAsync(b=>b.Id == id);
     }
-
+    public async Task<Book?> GetBookByIdByStatus(Guid bookId, string status)
+    {
+        return await _context.Books.FirstOrDefaultAsync(b => b.Id.Equals(bookId) && b.Status.Equals(status));
+    }
     public async Task<List<Book>> GetFilteredBooks(Expression<Func<Book, bool>> predicate)
     {
         return await _context.Books.Where(predicate).ToListAsync();

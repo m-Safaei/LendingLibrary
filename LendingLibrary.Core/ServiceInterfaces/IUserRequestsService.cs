@@ -1,4 +1,5 @@
 ﻿using LendingLibrary.Core.Domain.Entities;
+using LendingLibrary.Core.DTO.Book;
 using LendingLibrary.Core.DTO.UserRequest;
 
 namespace LendingLibrary.Core.ServiceInterfaces;
@@ -18,4 +19,6 @@ public interface IUserRequestsService
     Task<List<UsersRequestsAdminSideDto>> GetAllRequests();
 
     Task<bool> ConfirmRequest(string request, Guid bookId, Guid userId);
+
+    Task<List<BookResponseDto>> GetUserBooks(string status, Guid userId);
 }

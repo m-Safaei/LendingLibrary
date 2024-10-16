@@ -155,4 +155,25 @@ public class UserRequestsService : IUserRequestsService
         await _userBookRepository.AddUserBook(userBook);
         return true;
     }
+
+    public async Task<List<BookResponseDto>> GetUserBooks(string status, Guid userId)
+    {
+        List<UserBook> userBooks = await _userBookRepository.GetAllUserBooks(userId);
+
+        List<Guid> bookIds = userBooks.Select(b => b.BookId).ToList();
+
+        List<BookResponseDto> books = new();
+
+        foreach (var bookId in bookIds)
+        {
+            var book = await _booksService.GetBookByIdByStatus(bookId, status);
+            if(book != null)
+            {
+                books.Add(book);
+            }
+            
+        }
+
+        return books;
+    }
 }

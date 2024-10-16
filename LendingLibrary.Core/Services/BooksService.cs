@@ -35,6 +35,14 @@ public class BooksService : IBooksService
         return book.ToBookResponseDto();
     }
 
+    public async Task<BookResponseDto?> GetBookByIdByStatus(Guid bookId,string status)
+    {
+        Book? book = await _booksRepository.GetBookByIdByStatus(bookId, status);
+        if (book == null) return null;
+
+        return book.ToBookResponseDto();
+    }
+
     public async Task<List<BookResponseDto>> GetFilteredBooks(string searchBy, string searchString)
     {
         List<Book> books = searchBy switch

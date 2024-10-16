@@ -1,4 +1,5 @@
-﻿using LendingLibrary.Core.DTO.UserRequest;
+﻿using LendingLibrary.Core.DTO.Book;
+using LendingLibrary.Core.DTO.UserRequest;
 using LendingLibrary.Core.ExtensionMethods;
 using LendingLibrary.Core.ServiceInterfaces;
 using Microsoft.AspNetCore.Authorization;
@@ -54,5 +55,13 @@ public class RequestsController : Controller
             TempData["ErrorMessage"] = "عملیات ناموفق";
         }
         return RedirectToAction("ListOfRequests", "Requests");
+    }
+
+    public async Task<IActionResult> GetUserBooks(string status)
+    {
+        Guid userId = User.GetUserId();
+
+        List<BookResponseDto> books = await _userRequestsService.GetUserBooks(status, userId);
+        return View(books);
     }
 }

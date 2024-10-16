@@ -24,4 +24,9 @@ public class UserBookRepository : IUserBookRepository
     {
         return await _context.UserBooks.AnyAsync(b =>b.BookId == bookId);
     }
+
+    public async Task<List<UserBook>> GetAllUserBooks(Guid userId)
+    {
+        return await _context.UserBooks.Where(b=>b.ApplicationUserId.Equals(userId)).ToListAsync();
+    }
 }

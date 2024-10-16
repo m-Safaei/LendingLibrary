@@ -20,10 +20,10 @@
             <a asp-controller="FavoriteBooks" asp-action="ListOfFavorites">لیست علاقه‌مندی‌ها</a>
         </div>
         <div class="request">
-            <a asp-controller="" asp-action="">کتاب‌های در دست امانت</a>
+            <a asp-controller="Requests" asp-action="GetUserBooks" asp-route-status="در امانت">کتاب‌های در دست امانت</a>
         </div>
         <div class="request">
-            <a asp-controller="" asp-action="">کتاب‌های رزرو شده</a>
+            <a asp-controller="Requests" asp-action="GetUserBooks" asp-route-status="رزرو شده">کتاب‌های رزرو شده</a>
         </div>
         <div class="request">
             <a asp-controller="" asp-action="">ویرایش اطلاعات کاربری</a>

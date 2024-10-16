@@ -7,4 +7,6 @@ public interface IUserBookRepository
     Task AddUserBook(UserBook userBook);
 
     Task<bool> UserBookExists(Guid userId, Guid bookId);
+
+    Task<List<UserBook>> GetAllUserBooks(Guid userId);
 }
