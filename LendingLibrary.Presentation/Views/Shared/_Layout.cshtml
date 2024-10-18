@@ -23,6 +23,11 @@
                     <a asp-controller="Books" asp-action="Search">جستجو در منابع کتابخانه</a>
                 </div>
             </div>
+            <div class="link">
+                <div class="link" style="padding-left: 20px">
+                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">پنل ادمین</a>
+                </div>
+            </div>
             <div class="left-side">
                 @if (User.Identity.IsAuthenticated)
                 {

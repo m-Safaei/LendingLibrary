@@ -28,23 +28,24 @@
                 <th>تایید یا حذف درخواست</th>
                 </thead>
                 <tbody>
+                    @{ int i = 0;}
                     @foreach (UsersRequestsAdminSideDto userRequest in Model)
                     {
-                        foreach (UserRequestResponseDto request in userRequest.requests)
-                        {
-                            <tr>
-                                <td>@userRequest.UserName</td>
-                                <td style="width:40%"><a asp-area="" asp-controller="Books" asp-action="BookPage" asp-route-id="@request.BookId">@request.Title</a></td>
-                                <td style="width:20%">@request.Author</td>
-                                <td style="width:20%">@request.Status</td>
-                                <td style="width:25%">@request.Request</td>
-                                <td>@request.RequestDate.ToShamsi()</td>
-                                <td style="width:35%">
-                                    <a asp-area="Admin" asp-controller="Requests" asp-action="ConfirmRequest" asp-route-request="@request.Request" asp-route-bookId="@request.BookId" asp-route-userId="@userRequest.UserId">تایید</a>
-                                    <a asp-area="Admin" asp-controller="Requests" asp-action="DeleteRequest" asp-route-requestId="@request.RequestId">حذف</a>
-                                </td>
-                            </tr>
-                        }
+                        <tr>
+                            <td>@userRequest.UserName</td>
+                            <td style="width:40%"><a asp-area="" asp-controller="Books" asp-action="BookPage" asp-route-id="@userRequest.requests[i].BookId">@userRequest.requests[i].Title</a></td>
+                            <td style="width:20%">@userRequest.requests[i].Author</td>
+                            <td style="width:20%">@userRequest.requests[i].Status</td>
+                            <td style="width:25%">@userRequest.requests[i].Request</td>
+                            <td>@userRequest.requests[i].RequestDate.ToShamsi()</td>
+                            <td style="width:35%">
+                                <a asp-area="Admin" asp-controller="Requests" asp-action="ConfirmRequest" asp-route-request="@userRequest.requests[i].Request" asp-route-bookId="@userRequest.requests[i].BookId" asp-route-userId="@userRequest.UserId">تایید</a>
+                                <a asp-area="Admin" asp-controller="Requests" asp-action="DeleteRequest" asp-route-requestId="@userRequest.requests[i].RequestId">حذف</a>
+                            </td>
+                        </tr>
+
+                        i++;
+
 
                     }
                 </tbody>
